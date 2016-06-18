@@ -4,18 +4,26 @@ class Ted
   attr_reader :bot
 
   def perform
-    telegram_bot do |bot|
-      @bot = bot
-      send_message
+    loop do
+      update_flats
+      sleep 300
+      send_message 'I am still alive!'
     end
   end
 
   private
 
-  def send_message
+  def update_flats
+    telegram_bot do |bot|
+      @bot = bot
+      Parser::OLX.new.new_flats.each { |f| send_message(f) }
+    end
+  end
+
+  def send_message(f)
     bot.api.sendMessage(
       chat_id: config[:development_chat],
-      text: 'http://olx.ua/obyavlenie/sdam-4komnatnuyu-kvartiru-15km-ot-kieva-IDl4EiY.html#b2d914b319'
+      text: f
     )
   end
 

@@ -9,9 +9,9 @@ describe Parser::OLX do
   end
 
   it 'will retrieve an array of links' do
-    expect(parser.links).to be_a Array
-    expect(parser.links.length).to be > 1
-    expect(parser.links.all? { |l| l =~ URI::regexp }).to be true
+    expect(parser.send(:requested_flats)).to be_a Array
+    expect(parser.send(:requested_flats).length).to be > 1
+    expect(parser.send(:requested_flats).all? { |l| l =~ URI::regexp }).to be true
   end
 
   it 'will store those links at database' do
