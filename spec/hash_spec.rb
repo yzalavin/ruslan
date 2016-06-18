@@ -1,4 +1,4 @@
-require_relative '../base'
+require_relative 'spec_helper'
 
 describe Hash do
   let(:hash) { { 'hello' => 'world' } }
