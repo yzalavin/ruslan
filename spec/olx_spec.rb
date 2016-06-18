@@ -13,4 +13,8 @@ describe Parser::OLX do
     expect(parser.links.length).to be > 1
     expect(parser.links.all? { |l| l =~ URI::regexp }).to be true
   end
+
+  it 'will store those links at database' do
+    expect{ parser.insert_links }.to change { parser.send(:table).all.count }
+  end
 end

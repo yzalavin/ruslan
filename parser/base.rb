@@ -17,7 +17,7 @@ module Parser
     private
 
     def config
-      YAML.load_file('config.yml').deep_symbolize_keys[resource]
+      YAML.load_file('config/sites.yml').deep_symbolize_keys[resource]
     end
 
     def response
