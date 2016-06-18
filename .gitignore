@@ -1,2 +1,1 @@
-config/sites.yml
-config/database.yml
+config/*
