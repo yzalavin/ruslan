@@ -1,11 +1,9 @@
 require 'sequel'
+require 'yaml'
+
 
 class Database
-  attr_reader :connection
-
-  def initialize
-    @connection = Sequel.postgres('ted', database_config)
-  end
+  CONNECTION = Sequel.postgres('ted', ::YAML.load_file('config/database.yml').deep_symbolize_keys)
 
   def create_tables
     connection.create_table :olx do
@@ -20,7 +18,11 @@ class Database
 
   private
 
-  def database_config
+  def config
     YAML.load_file('config/database.yml').deep_symbolize_keys
+  end
+
+  def connection
+    CONNECTION
   end
 end

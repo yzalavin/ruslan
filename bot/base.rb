@@ -7,7 +7,6 @@ class Ted
     loop do
       update_flats
       sleep 300
-      send_message 'I am still alive!'
     end
   end
 
