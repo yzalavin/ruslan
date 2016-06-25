@@ -1,28 +1,27 @@
 require 'sequel'
 require 'yaml'
-
+require 'pathname'
 
 class Database
-  CONNECTION = Sequel.postgres('ted', ::YAML.load_file('config/database.yml').deep_symbolize_keys)
-
-  def create_tables
-    connection.create_table :olx do
-      primary_key :id
-      String :link
-    end
-  end
-
   def table(key)
     connection[key]
   end
 
-  private
-
-  def config
-    YAML.load_file('config/database.yml').deep_symbolize_keys
+  def migrations_path
+    defined?(@migrations_path) ? @migrations_path : initialize_migrations_path
   end
 
   def connection
-    CONNECTION
+    @connection ||= Sequel.postgres('ted', ::YAML.load_file('config/database.yml').deep_symbolize_keys)
+  end
+
+  def config
+    @config ||= YAML.load_file('config/database.yml').deep_symbolize_keys
+  end
+
+  private
+
+  def initialize_migrations_path
+    Pathname.new(File.expand_path('..', File.dirname(__FILE__))).join('db', 'migrations')
   end
 end
