@@ -19,6 +19,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    pg (0.18.4)
     pkg-config (1.1.7)
     rake (11.2.2)
     rspec (3.4.0)
@@ -50,6 +51,7 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
+  pg
   rake (~> 11.2.2)
   rspec
   sequel
