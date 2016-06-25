@@ -51,7 +51,7 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
-  pg
+  pg (~> 0.18.2)
   rake (~> 11.2.2)
   rspec
   sequel

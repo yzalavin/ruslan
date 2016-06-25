@@ -1,3 +1,4 @@
+require_relative 'hash'
 require 'sequel'
 require 'yaml'
 require 'pathname'
